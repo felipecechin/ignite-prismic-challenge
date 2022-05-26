@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import * as prismicH from '@prismicio/helpers';
+import { AiOutlineCalendar, AiOutlineClockCircle, AiOutlineUser } from 'react-icons/ai';
 import { getPrismicClient } from '../../services/prismic';
 import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
@@ -27,6 +28,17 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps): JSX.Element {
+  const minutesToRead = Math.ceil(
+    post.data.content.reduce((words, cur) => {
+      return [
+        ...words,
+        ...cur.heading.split(/[,.\s]/),
+        ...cur.body.split(/[,.\s]/),
+      ];
+    }, []).length / 200
+  );
+  console.log(minutesToRead);
+
   return (
     <>
       <div className={commonStyles.container}>
@@ -39,7 +51,28 @@ export default function Post({ post }: PostProps): JSX.Element {
       </div>
       <main className={commonStyles.container}>
         <div className={styles.post}>
-
+          <h2 className={styles.title}>{post.data.title}</h2>
+          <div className={styles.dateAuthorRead}>
+            <time>
+              <AiOutlineCalendar />
+              {post.first_publication_date}
+            </time>
+            <span>
+              <AiOutlineUser />
+              {post.data.author}
+            </span>
+            <span>
+              <AiOutlineClockCircle />
+              {minutesToRead} min
+            </span>
+          </div>
+          {post.data.content.map(c => {
+            return (
+              <div key={c.heading} className={styles.content}>
+                {c.heading}
+              </div>
+            );
+          })}
         </div>
       </main>
     </>

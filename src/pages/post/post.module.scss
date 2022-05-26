@@ -9,3 +9,41 @@
     max-height: 400px;
   }
 }
+
+.post {
+  .title {
+    margin: 2rem 0;
+    font-weight: 700;
+    font-size: 2.5rem;
+    color: var(--heading-gray);
+  }
+
+  .dateAuthorRead {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    color: var(--info-gray);
+    font-weight: 400;
+
+    time {
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      color: var(--gray-300);
+      svg {
+        margin-right: 0.25rem;
+      }
+    }
+
+    span {
+      margin-left: 1.5rem;
+      font-size: 0.875rem;
+      display: flex;
+      align-items: center;
+      color: var(--gray-300);
+      svg {
+        margin-right: 0.25rem;
+      }
+    }
+  }
+}
