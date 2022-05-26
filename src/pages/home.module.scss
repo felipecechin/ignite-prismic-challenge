@@ -1,1 +1,71 @@
-// TODO
+.posts {
+  a {
+      display: block;
+
+      & + a {
+          margin-top: 1.5rem;
+          padding-top: 1.5rem;
+      }
+      
+      strong {
+          display: block;
+          font-size: 1.75rem;
+          font-weight: 700;
+          margin-top: 1rem;
+          line-height: 2.5rem;
+          color: var(--heading-gray);
+      }
+
+      p {
+          color: var(--body-gray);
+          margin-top: 1rem;
+          line-height: 1.75rem;
+          font-weight: 400;
+          font-size: 1.125rem;
+      }
+
+      .dateAuthor {
+        margin: 1rem 0;
+        display: flex;
+        flex-direction: row;
+        color: var(--info-gray);
+        font-weight: 400;
+
+        time {
+          font-size: 0.875rem;
+          display: flex;
+          align-items: center;
+          color: var(--gray-300);
+          svg {
+            margin-right: 0.25rem;
+          }
+        }
+        
+        span {
+          margin-left: 1.5rem;
+          font-size: 0.875rem;
+          display: flex;
+          align-items: center;
+          color: var(--gray-300);
+          svg {
+            margin-right: 0.25rem;
+          }
+        }
+      }
+  }
+}
+
+.headerContent {
+  margin: 6rem 0;
+}
+
+.loadPosts {
+  font-size: 1.125rem;
+  margin-top: 3rem;
+  font-weight: 600;
+  color: var(--highlight-pink);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  outline: none;
+}
