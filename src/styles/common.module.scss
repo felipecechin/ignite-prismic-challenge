@@ -3,3 +3,13 @@
   margin: 0 auto;
   padding: 0 10rem;
 }
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 3rem;
+  }
+}
+
+.finalDiv {
+  padding-bottom: 3rem;
+}

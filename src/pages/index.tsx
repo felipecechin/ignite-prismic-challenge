@@ -4,6 +4,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { AiOutlineCalendar, AiOutlineUser } from 'react-icons/ai';
 import Link from 'next/link';
 import { useState } from 'react';
+import Head from 'next/head';
 import { getPrismicClient } from '../services/prismic';
 import commonStyles from '../styles/common.module.scss';
 import styles from './home.module.scss';
@@ -62,40 +63,51 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
   };
 
   return (
-    <div className={commonStyles.container}>
-      <header className={styles.headerContent}>
-        <Header />
-      </header>
-      <main className={styles.posts}>
-        {posts.map(post => (
-          <Link key={post.uid} href={`/post/${post.uid}`}>
-            <a>
-              <strong>{post.data.title}</strong>
-              <p>{post.data.subtitle}</p>
-              <div className={styles.dateAuthor}>
-                <time>
-                  <AiOutlineCalendar />
-                  {post.first_publication_date}
-                </time>
-                <span>
-                  <AiOutlineUser />
-                  {post.data.author}
-                </span>
-              </div>
-            </a>
-          </Link>
-        ))}
-        {showButtonLoadPosts && (
-          <button
-            className={styles.loadPosts}
-            type="button"
-            onClick={handleLoadPosts}
-          >
-            Carregar mais posts
-          </button>
-        )}
-      </main>
-    </div>
+    <>
+      <Head>
+        <title>Spacetraveling | Posts</title>
+      </Head>
+      <div className={`${commonStyles.container} ${commonStyles.finalDiv}`}>
+        <header className={styles.headerContent}>
+          <Header />
+        </header>
+        <main className={styles.posts}>
+          {posts.map(post => (
+            <Link key={post.uid} href={`/post/${post.uid}`}>
+              <a>
+                <strong>{post.data.title}</strong>
+                <p>{post.data.subtitle}</p>
+                <div className={styles.dateAuthor}>
+                  <time>
+                    <AiOutlineCalendar />
+                    {format(
+                      new Date(post.first_publication_date),
+                      `dd MMM yyyy`,
+                      {
+                        locale: ptBR,
+                      }
+                    )}
+                  </time>
+                  <span>
+                    <AiOutlineUser />
+                    {post.data.author}
+                  </span>
+                </div>
+              </a>
+            </Link>
+          ))}
+          {showButtonLoadPosts && (
+            <button
+              className={styles.loadPosts}
+              type="button"
+              onClick={handleLoadPosts}
+            >
+              Carregar mais posts
+            </button>
+          )}
+        </main>
+      </div>
+    </>
   );
 }
 
@@ -108,13 +120,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const posts = postsResponse.results.map(post => {
     return {
       uid: post.uid,
-      first_publication_date: format(
-        new Date(post.first_publication_date),
-        `dd MMM yyyy`,
-        {
-          locale: ptBR,
-        }
-      ),
+      first_publication_date: post.first_publication_date,
       data: {
         title: post.data.title,
         subtitle: post.data.subtitle,

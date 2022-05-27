@@ -14,7 +14,7 @@
   .title {
     margin: 2rem 0;
     font-weight: 700;
-    font-size: 2.5rem;
+    font-size: 3rem;
     color: var(--heading-gray);
   }
 
@@ -29,7 +29,6 @@
       font-size: 0.875rem;
       display: flex;
       align-items: center;
-      color: var(--gray-300);
       svg {
         margin-right: 0.25rem;
       }
@@ -40,9 +39,48 @@
       font-size: 0.875rem;
       display: flex;
       align-items: center;
-      color: var(--gray-300);
       svg {
         margin-right: 0.25rem;
+      }
+    }
+  }
+
+
+  .content {
+    .contentHeading {
+      display: block;
+      margin: 2rem 0;
+      font-weight: 700;
+      font-size: 2.25rem;
+      color: var(--heading-gray);
+    }
+
+    .contentBody {
+      font-weight: 400;
+      line-height: 1.5rem;
+      font-size: 1.125rem;
+      color: var(--body-gray);
+
+      strong {
+        font-weight: 700;
+      }
+
+      p {
+        text-align: justify;
+        margin: 2rem 0;
+      }
+
+      ul {
+        li {
+          margin: 2rem 0;
+        }
+      }
+
+      a {
+        color: var(--highlight-pink);
+      }
+      a:hover {
+        text-decoration: underline;
       }
     }
   }
